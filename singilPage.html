@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   <link rel="stylesheet" href="./bootstrap.css">
+   <script src="./bootstrap.bundle.js"></script>
+</head>
+
+<body>
+    <div class="container">
+
+            <img width="500px" src="" class="rasm" >
+            <h1 class="nomi">ichimlik nomi</h1>
+
+        </div>
+
+
+        <script>
+            document.addEventListener("DOMContentLoaded", async (e)=>{
+                let ursSearch = window.location.search
+                let urlPaarams = new URLSearchParams(ursSearch)
+                let id = urlPaarams.get ("id")
+                console.log(id)
+                let request = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`)
+                let response = await request.json()
+                console.log(response)
+                document.querySelector(".rasm").src = response.drinks[0].strDrinkThumb
+                document.querySelector(".nomi").innerHTML = response.drinks[0].strDrink
+
+            })
+        </script>
+</body>
+
+</html>
